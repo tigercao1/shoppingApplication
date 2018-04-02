@@ -3,6 +3,22 @@ var User        = require('../models/user');
 var mongoose    = require('mongoose');
 mongoose.connect('mongodb://localhost/shoppingApp');
 
+Product.remove({}, function(err){ //remove existing cat documents
+  if(err) {
+    console.log('ERROR: Remove failed')
+    return
+  }
+  //ALL CAT DOCUMENTS REMOVED
+});
+
+User.remove({}, function(err){ //remove existing cat documents
+  if(err) {
+    console.log('ERROR: Remove failed')
+    return
+  }
+  //ALL CAT DOCUMENTS REMOVED
+});
+
 var products = [
     new Product({
         imagePath   : 'http://lp2.hm.com/hmgoepprod?set=source[/92/79/92793aba86092b2ff450a47a50a985c9e488db29.jpg],origin[dam],category[ladies_maternity_bottoms],type[LOOKBOOK],hmver[1]&call=url[file:/product/zoom]&zoom=zoom',
@@ -38,22 +54,44 @@ var products = [
 
 for (var i = 0; i < products.length; i++){
     products[i].save(function(err, result) {
-        if (i === products.length - 1){
+        if (i >= products.length - 1){
             exit();
         }
     });
 }
 
-var newUser = new User({
+var users = [
+  new User({
     username    : 'admin@admin.com',
     password    : 'admin',
-    fullname    : 'Cuneyt Celebican',
+    fullname    : 'Yizhang Cao',
     admin       : true
-});
-User.createUser(newUser, function(err, user){
-    if(err) throw err;
-    console.log(user);
-});
+  }),
+  new User({
+    username    : 'elainedeng',
+    password    : 'imstupid',
+    fullname    : 'Elaine Deng',
+    admin       : false
+  })
+  new User({
+    username    : 'e',
+    password    : '1',
+    fullname    : 'Dev',
+    admin       : false
+  })
+];
+for (var i=0; i < users.length; i++){
+  User.createUser(users[i], function(err, user){
+      if(err) throw err;
+      if (i >= users.length -1){
+        console.log("Exiting");
+        exit();
+      }
+      console.log(user);
+
+  });
+}
+
 
 function exit() {
     mongoose.disconnect();
