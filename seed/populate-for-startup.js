@@ -21,34 +21,59 @@ User.remove({}, function(err){ //remove existing cat documents
 
 var products = [
     new Product({
-        imagePath   : 'http://lp2.hm.com/hmgoepprod?set=source[/92/79/92793aba86092b2ff450a47a50a985c9e488db29.jpg],origin[dam],category[ladies_maternity_bottoms],type[LOOKBOOK],hmver[1]&call=url[file:/product/zoom]&zoom=zoom',
-        title       : 'MAMA Denim Bib Overalls',
-        description : 'Bib overalls in washed stretch denim with distressed details and adjustable suspenders. Bib pocket, side and back pockets, buttons at sides, and tapered legs.',
-        price       : 69.99
+        imagePath   : 'https://images.stadiumgoods.com/imageresize?sku=011475%7CSU2277&image=gallery[1]&height=600&width=1000',
+        title       : 'Supreme Chopstricks',
+        description : 'Chopsticks SU2277, Colorway-RED',
+        price       : 153.52
     }),
     new Product({
-        imagePath   : 'http://lp2.hm.com/hmgoepprod?set=source[/87/ec/87ec6ca9ec5ca3a2042dabe1f0bfe73e1f6c51a0.jpg],origin[dam],category[],type[LOOKBOOK],hmver[1]&call=url[file:/product/zoom]&zoom=zoom',
-        title       : 'V-neck Cotton Sweater',
-        description : 'Fine-knit sweater in cotton with a V-neck, long sleeves, and ribbing at neckline, cuffs, and hem.',
-        price       : 14.99
+        imagePath   : 'https://images.stadiumgoods.com/imageresize?sku=009944%7CM53414&image=gallery[1]&height=600&width=1000',
+        title       : 'Louis Vuitton',
+        description : 'Christopher Backpack PM M53414',
+        price       : 19287.00
     }),
     new Product({
-        imagePath   : 'http://lp2.hm.com/hmgoepprod?set=source[/75/36/7536c52c6107e54b4d29bc5e82b6e2fd23ee2dc6.jpg],origin[dam],category[ladies_jacketscoats_jackets],type[LOOKBOOK],hmver[2]&call=url[file:/product/zoom]&zoom=zoom',
-        title       : 'Skinny Low Jeans',
-        description : '5-pocket low-rise jeans in washed stretch denim with a button fly and skinny legs.',
-        price       : 34.99
+        imagePath   : 'https://images.stadiumgoods.com/imageresize?sku=004000%7CSU0637&image=gallery[1]&height=600&width=1000',
+        title       : 'Supreme Kryptonite U-Lock',
+        description : 'Keep your bike from getting stolen in ultimate style with this high-quality Kryptonite U-Lock in collaboration with Supreme.',
+        price       : 256.73
+    }),
+
+    new Product({
+        imagePath   : 'https://assets.supremenewyork.com/149195/ma/9JSRXtmu_Jc.jpg',
+        title       : 'Supreme Classic Wheels(Set of 4)',
+        description : 'Classic Spitfire wheels with custom Supreme art. Each size sold separately as a set of four wheels.',
+        price       : 30.00
     }),
     new Product({
-        imagePath   : 'http://lp2.hm.com/hmgoepprod?set=source[/2e/9e/2e9ecfe6c88bfd83e3c2dd85cae981d3a068b075.jpg],origin[dam],category[men_trousers_trousers_skinny_all],type[LOOKBOOK],hmver[1]&call=url[file:/product/zoom]&zoom=zoom',
-        title       : 'Twill trousers Skinny fit',
-        description : '5-pocket trousers in washed, slightly stretchy twill with a regular waist, zip fly and skinny legs. Skinny fit.',
-        price       : 29.99
+        imagePath   : 'https://assets.supremenewyork.com/150013/ma/A_y8ADqvIYw.jpg',
+        title       : 'Ladybug Pin',
+        description : 'enamel pin',
+        price       : 8
     }),
     new Product({
-        imagePath   : 'http://lp2.hm.com/hmgoepprod?set=source[/ac/27/ac27d3ae1fa155d3ad1e7aa61a3cdd8dcf7d534d.jpg],origin[dam],category[ladies_jacketscoats_biker],type[LOOKBOOK],hmver[1]&call=url[file:/product/zoom]&zoom=zoom',
-        title       : 'Faux Suede Biker Jacket',
-        description : 'Biker jacket in faux suede. Notched lapels with decorative snap fasteners, diagonal zip at front, and side pockets with zip. Long sleeves with zip at cuffs. Attached, adjustable belt at hem with a metal fastener. Lined.',
-        price       : 79.99
+        imagePath   : 'https://assets.supremenewyork.com/147255/ma/ViH0QWMnTNU.jpg',
+        title       : 'Chest Stripes Polo(Light Pink)',
+        description : 'All cotton yarn dyed polo with flat knit collar and chest pocket with embroidered logo',
+        price       : 98
+    }),
+    new Product({
+        imagePath   : 'https://assets.supremenewyork.com/149806/ma/K-tKQp5La7Y.jpg',
+        title       : 'Fiorenza Tee',
+        description : 'All cotton classic Supreme t-shirt with printed graphic on front',
+        price       : 36
+    }),
+    new Product({
+        imagePath   : 'https://assets.supremenewyork.com/146201/ma/YYEPG6OtcVE.jpg',
+        title       : 'Polka Dot Denim Shirt(Black)',
+        description : 'All cotton denim with printed pattern. Chest pockets with button closure and embroidered logo on back',
+        price       : 128
+    }),
+    new Product({
+        imagePath   : 'https://assets.supremenewyork.com/147071/ma/17BFWJXFKfs.jpg',
+        title       : 'Nan Goldin/Supreme Misty and Jimmy Paulette Coaches Jacket(Gold)',
+        description : 'Water resistant poly with cotton jersey lining and snap front closure. Hand pockets at lower front with drawcord at waist. Printed graphic on back and printed logo on chest, Original artwork by Nan Goldin',
+        price       : 188
     })
 ];
 
@@ -65,13 +90,13 @@ var users = [
     username    : 'admin@admin.com',
     password    : 'admin',
     fullname    : 'Yizhang Cao',
-    admin       : true
+    admin       : false
   }),
   new User({
     username    : 'elainedeng',
     password    : 'imstupid',
     fullname    : 'Elaine Deng',
-    admin       : false
+    admin       : true
   })
   new User({
     username    : 'e',
