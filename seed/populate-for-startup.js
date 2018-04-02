@@ -97,7 +97,7 @@ var users = [
     password    : 'imstupid',
     fullname    : 'Elaine Deng',
     admin       : true
-  })
+  }),
   new User({
     username    : 'e',
     password    : '1',
