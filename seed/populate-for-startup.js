@@ -43,13 +43,13 @@ var products = [
         imagePath   : 'https://assets.supremenewyork.com/149195/ma/9JSRXtmu_Jc.jpg',
         title       : 'Supreme Classic Wheels(Set of 4)',
         description : 'Classic Spitfire wheels with custom Supreme art. Each size sold separately as a set of four wheels.',
-        price       : 30.00
+        price       : 29.99
     }),
     new Product({
         imagePath   : 'https://assets.supremenewyork.com/150013/ma/A_y8ADqvIYw.jpg',
         title       : 'Ladybug Pin',
         description : 'enamel pin',
-        price       : 8
+        price       : 7.99
     }),
     new Product({
         imagePath   : 'https://assets.supremenewyork.com/147255/ma/ViH0QWMnTNU.jpg',
@@ -61,20 +61,38 @@ var products = [
         imagePath   : 'https://assets.supremenewyork.com/149806/ma/K-tKQp5La7Y.jpg',
         title       : 'Fiorenza Tee',
         description : 'All cotton classic Supreme t-shirt with printed graphic on front',
-        price       : 36
+        price       : 35.99
     }),
     new Product({
         imagePath   : 'https://assets.supremenewyork.com/146201/ma/YYEPG6OtcVE.jpg',
         title       : 'Polka Dot Denim Shirt(Black)',
         description : 'All cotton denim with printed pattern. Chest pockets with button closure and embroidered logo on back',
-        price       : 128
+        price       : 127.99
     }),
     new Product({
         imagePath   : 'https://assets.supremenewyork.com/147071/ma/17BFWJXFKfs.jpg',
         title       : 'Nan Goldin/Supreme Misty and Jimmy Paulette Coaches Jacket(Gold)',
         description : 'Water resistant poly with cotton jersey lining and snap front closure. Hand pockets at lower front with drawcord at waist. Printed graphic on back and printed logo on chest, Original artwork by Nan Goldin',
         price       : 188
-    })
+    }),
+    new Product({
+        imagePath   : 'https://assets.supremenewyork.com/147016/ma/JfBKC7hn6kA.jpg',
+        title       : 'Repeat Zip Up Hooded Sweatshirt',
+        description : 'Cotton fleece with printed pattern, pouch pocket and zip closure',
+        price       : 188
+    }),
+    new Product({
+        imagePath   : 'https://assets.supremenewyork.com/149187/ma/AHiy6C168yc.jpg',
+        title       : 'Supreme/Hanes Tagless Tees(3 Pack)',
+        description : 'All cotton classic Hanes crewneck tee with stamped logo on lower front',
+        price       : 27.99
+    }),
+    new Product({
+        imagePath   : 'https://assets.supremenewyork.com/148435/ma/YJ3QsO4FWDw.jpg',
+        title       : 'Waist Bag(Black)',
+        description : '1050D Cordura ripstop nylon. Main zipper compartment with internal pockets. Front zipper compartment and adjustable waist strap with clasp. Jacquard logo webbing on strap and top handle. 2.5L',
+        price       : 88
+    }),
 ];
 
 for (var i = 0; i < products.length; i++){
