@@ -15,7 +15,7 @@ var LocalStrategy     = require('passport-local').Strategy;
 var MongoStore        = require('connect-mongo')(session);
 var mongo             = require('mongodb');
 var mongoose          = require('mongoose');
-var paypal            = require('paypal-rest-sdk');
+// var paypal            = require('paypal-rest-sdk');
 mongoose.connect('mongodb://localhost/shoppingApp');
 var db                = mongoose.connection;
 
@@ -27,12 +27,6 @@ var checkout = require('./routes/checkout');
 MomentHandler.registerHelpers(Handlebars);
 
 var app = express();
-
-paypal.configure({
-  'mode': 'sandbox', //sandbox or live
-  'client_id': 'Aab2QIrRswcJV_OvId7_3A1LNIukXK8XOSKHVVJiP30Dx0g7H5oVjINFWNcFbCbW_veZ4AFBi-wjLFx4',
-  'client_secret': 'EJ5h2uMfTrYYKK8YGktnZY0OlHnXVONEyAOfy6nebtb9FTzrOMLqjquif61nua4u6ozLoahsARmA_e9W'
-});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

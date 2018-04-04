@@ -44,6 +44,7 @@ router.get('/add-to-bag/:id', ensureAuthenticated, function(req, res, next){
       if(err){
         res.redirect('error');
       }
+      console.log("Product Title: " + product.title + " Product ID: " + product.id);
       cart.add(product, product.id);
       req.session.cart = cart;
       console.log(req.session.cart);
@@ -137,7 +138,7 @@ router.post('/filters', ensureAuthenticated, function(req, res, next){
   else{
     res.redirect('/')
   }
-  
+
 });
 
 
@@ -194,7 +195,7 @@ router.get('/update/:id', ensureAuthenticated, function(req, res, next){
       console.log(err);
     } else {
       res.render('updateProduct', {title: 'Update product',userFirstName: req.user.fullname, product: item});
-      
+
     }
   });
 });
@@ -207,7 +208,7 @@ router.get('/update/', ensureAuthenticated, function(req, res, next){
 // POST update page
 router.post('/update', ensureAuthenticated, function(req, res, next){
   let aProductId = req.body.id;
-  Product.findOneAndUpdate({"_id": aProductId}, 
+  Product.findOneAndUpdate({"_id": aProductId},
   { $set: {
     "imagePath"   : req.body.imagePath,
     "title"       : req.body.title,
@@ -223,7 +224,7 @@ router.post('/update', ensureAuthenticated, function(req, res, next){
       res.redirect('/');
     }
   });
-  
+
 });
 
 function escapeRegex(text) {

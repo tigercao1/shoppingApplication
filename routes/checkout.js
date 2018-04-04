@@ -1,8 +1,21 @@
 var express                 = require('express');
+var paypal            = require('paypal-rest-sdk');
 var router                  = express.Router();
 var Cart                    = require('../models/cart');
 var Order                   = require('../models/order');
 
+
+paypal.configure({
+  'mode': 'sandbox', //sandbox or live
+  'client_id': 'Aab2QIrRswcJV_OvId7_3A1LNIukXK8XOSKHVVJiP30Dx0g7H5oVjINFWNcFbCbW_veZ4AFBi-wjLFx4',
+  'client_secret': 'EJ5h2uMfTrYYKK8YGktnZY0OlHnXVONEyAOfy6nebtb9FTzrOMLqjquif61nua4u6ozLoahsARmA_e9W'
+});
+
+var payment_id;
+var payment_method;
+var payment_urls;
+var CREATE_PAYMENT_URL = "";
+var EXECUTE_PAYMENT_URL = "";
 
 // GET checkout page
 router.get('/', ensureAuthenticated, function(req, res, next){
@@ -13,22 +26,64 @@ router.get('/', ensureAuthenticated, function(req, res, next){
 })
 
 // POST checkout-process
-router.post('/checkout-process', function(req, res){
+router.post("/checkout-process", function(req, res){
    console.log(`ROUTE: POST CHECKOUT-PROGRESS`)
     var cart = new Cart(req.session.cart);
     var totalPrice = cart.totalPrice;
-    var didPaymentSucceed = Math.random()
-    //FOR NOW
-    if (didPaymentSucceed >= 0.5){
-       //either of these two could work
-       //res.render('checkoutSuccess', {title: 'Successful', containerWrapper: 'container', userFirstName: req.user.fullname})
-       res.redirect(302, '/checkout/checkout-success')
-     }
-    else {
-       //either of these two could work
-       //res.render('checkoutCancel', {title: 'Successful', containerWrapper: 'container', userFirstName: req.user.fullname})
-       res.redirect(302, '/checkout/checkout-cancel')
+
+    var create_payment_json = {
+        "intent": "sale",
+        "payer": {
+            "payment_method": "paypal"
+        },
+        "redirect_urls": {
+            "return_url": "http://localhost:3000/checkout/checkout-success",
+            "cancel_url": "http://localhost:3000/checkout/checkout-cancel"
+        },
+        "transactions": [{
+            "item_list": {
+                "items": []
+            },
+            "amount": {
+                "currency": "CAD",
+                "total": cart.totalPrice
+            },
+            "description": "Purchase Summary from Supreme China"
+        }]
+    };
+
+    var itemArray = cart.generateArray();
+    // console.log (create_payment_json.intent);
+    for (let item of itemArray){
+      // console.log("Title: " + item.item.title + " \n");
+      // console.log("Price: " + item.price + "\n");
+      let itemToAdd = {
+        "name" : item.item.title,
+        "sku" : item.item.title,
+        "price" : item.price,
+        "currency" : "CAD",
+        "quantity" : item.qty};
+      console.log("Item: " + itemToAdd);
+      create_payment_json.transactions[0].item_list.items.push(itemToAdd);
     }
+
+    paypal.payment.create(create_payment_json, function (error, payment) {
+      if (error) {
+          throw error;
+      } else {
+          // console.log("Create Payment Response");
+          console.log(payment);
+          for (let url of payment.links){
+            console.log(url.rel);
+            if (url.rel === "approval_url"){
+              console.log(url.href);
+              res.redirect(url.href);
+            }
+          }
+      }
+    });
+
+
 });
 
 // GET checkout-success
@@ -36,7 +91,30 @@ router.get('/checkout-success', ensureAuthenticated, function(req, res){
     console.log(`ROUTE: GET CHECKOUT-SUCCESS`)
     var cart = new Cart(req.session.cart);
     var totalPrice = cart.totalPrice;
-    res.render('checkoutSuccess', {title: 'Successful', containerWrapper: 'container', userFirstName: req.user.fullname})
+    let paymentId = req.query.paymentId
+    let payerId = req.query.PayerID
+    console.log("PayerID: " + payerId);
+    console.log("PaymentID: " + paymentId);
+    res.render('checkoutSuccess', {title: 'Successful', containerWrapper: 'container', userFirstName: req.user.fullname});
+    let execute_payment_json = {
+      "payer_id": payerId,
+      "transactions": [{
+          "amount": {
+              "currency": "CAD",
+              "total": cart.totalPrice
+          }
+      }]
+    };
+
+    paypal.payment.execute(paymentId, execute_payment_json, function (error, payment) {
+      if (error) {
+          console.log(error.response);
+          throw error;
+      } else {
+          console.log("Get Payment Response");
+          console.log(JSON.stringify(payment));
+      }
+    });
 });
 
 // PAYMENT CANCEL
