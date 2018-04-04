@@ -1,3 +1,20 @@
+DISCLAIMER:
+
+THIS REPO IS FOR SCHOOL ASSIGNMENT PURPOSE ONLY! ABOUT 70% CODE IS NOT ORIGINAL WORK!!!!! 
+PROVIDED BY PROFESSOR LOUIS NEL and the <3 of COMP 2406 students
+
+##############################################################################################
+
+The Goal of this assignment is to implement the Paypal Restful API into this shopping website.
+
+Work Done By Me and Elaine Deng:
+Implemented Paypal checkout using paypal-rest-sdk
+modified code to accomplish redirection to purchase success page / cancel page depending on the paypal payment.
+Emptying the shopping bag after the completion of current transaction.
+Implemented seed/populate-for-startup.js for populating the MongoDB associated with the app
+
+##############################################################################################
+
 To run this app you need a personal Paypal Account
 You can create on at paypal.com
 When you create the account you don't need to link a credit card or bank account at that
