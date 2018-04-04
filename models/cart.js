@@ -39,6 +39,12 @@ module.exports = function Cart(oldCart) {
         this.totalPrice = Math.round(this.totalPrice*100)/100;
     }
 
+    this.emptyCart = function () {
+      this.items = {};
+      this.totalQty = 0;
+      this.totalPrice = 0;
+    }
+
     this.generateArray = function () {
         var arr = [];
         for (var id in this.items) {

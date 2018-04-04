@@ -112,9 +112,29 @@ router.get('/checkout-success', ensureAuthenticated, function(req, res){
           throw error;
       } else {
           console.log("Get Payment Response");
-          console.log(JSON.stringify(payment));
+          // console.log(JSON.stringify(payment));
+          let order_id = payment.transactions[0].related_resources[0].sale.id;
+          let shippingAddressObj = payment.payer.payer_info.shipping_address;
+          let shipping_address = shippingAddressObj.line1 +
+            ", " + shippingAddressObj.city +
+            ", " + shippingAddressObj.state +
+            ", " + shippingAddressObj.postal_code +
+            ", " + shippingAddressObj.country_code;
+          let order_date = payment.transactions[0].related_resources[0].sale.create_time
+          var newOrder = new Order({
+            orderID             : order_id,
+            username            : req.user.username,
+            address             : shipping_address,
+            orderDate           : order_date,
+            shipping            : true
+          });
+          newOrder.save();
       }
     });
+    cart.emptyCart();
+    console.log (cart);
+    req.session.cart = cart;
+    console.log(req.session.cart);
 });
 
 // PAYMENT CANCEL

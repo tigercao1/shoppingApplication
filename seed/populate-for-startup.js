@@ -108,19 +108,19 @@ var users = [
     username    : 'admin@admin.com',
     password    : 'admin',
     fullname    : 'Yizhang Cao',
-    admin       : false
+    admin       : true
   }),
   new User({
     username    : 'elainedeng',
-    password    : 'imstupid',
+    password    : 'password',
     fullname    : 'Elaine Deng',
     admin       : true
   }),
   new User({
-    username    : 'e',
-    password    : '1',
-    fullname    : 'Dev',
-    admin       : false
+    username    : 'test',
+    password    : 'test',
+    fullname    : 'test',
+    admin       : true
   })
 ];
 for (var i=0; i < users.length; i++){
