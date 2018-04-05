@@ -37,8 +37,8 @@ router.post("/checkout-process", function(req, res){
             "payment_method": "paypal"
         },
         "redirect_urls": {
-            "return_url": "http://localhost:3000/checkout/checkout-success",
-            "cancel_url": "http://localhost:3000/checkout/checkout-cancel"
+            "return_url": "http://thehiddentent.com/checkout/checkout-success",
+            "cancel_url": "http://thehiddentent.com/checkout/checkout-cancel"
         },
         "transactions": [{
             "item_list": {
@@ -95,7 +95,6 @@ router.get('/checkout-success', ensureAuthenticated, function(req, res){
     let payerId = req.query.PayerID
     console.log("PayerID: " + payerId);
     console.log("PaymentID: " + paymentId);
-    res.render('checkoutSuccess', {title: 'Successful', containerWrapper: 'container', userFirstName: req.user.fullname});
     let execute_payment_json = {
       "payer_id": payerId,
       "transactions": [{
@@ -105,7 +104,6 @@ router.get('/checkout-success', ensureAuthenticated, function(req, res){
           }
       }]
     };
-
     paypal.payment.execute(paymentId, execute_payment_json, function (error, payment) {
       if (error) {
           console.log(error.response);
@@ -129,6 +127,7 @@ router.get('/checkout-success', ensureAuthenticated, function(req, res){
             shipping            : true
           });
           newOrder.save();
+          res.render('checkoutSuccess', {title: 'Successful', containerWrapper: 'container', userFirstName: req.user.fullname});
       }
     });
     cart.emptyCart();

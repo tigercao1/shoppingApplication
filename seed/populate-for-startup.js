@@ -97,9 +97,7 @@ var products = [
 
 for (var i = 0; i < products.length; i++){
     products[i].save(function(err, result) {
-        if (i >= products.length - 1){
-            exit();
-        }
+        if(err) throw err;
     });
 }
 

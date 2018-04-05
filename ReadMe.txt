@@ -3,6 +3,38 @@ DISCLAIMER:
 THIS REPO IS FOR SCHOOL ASSIGNMENT PURPOSE ONLY! ABOUT 70% CODE IS NOT ORIGINAL WORK!!!!! 
 PROVIDED BY PROFESSOR LOUIS NEL and the <3 of COMP 2406 students
 
+##########################################################################
+
+README
+
+Yizhang Cao 101038053
+Elaine Deng 101034510
+
+Version:
+node - v8.9.4
+npm - v5.8.0
+
+Install:
+npm install
+
+Launch:
+npm start / node bin/www
+
+Testing:
+localhost:3000
+
+Website login
+Username:
+test
+Password:
+test
+
+Paypal Login
+Username:
+c359247377-buyer@hotmail.com
+Password:
+123456
+
 ##############################################################################################
 
 The Goal of this assignment is to implement the Paypal Restful API into this shopping website.
